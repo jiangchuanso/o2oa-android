@@ -41,7 +41,7 @@ jobs:
         echo "sdk.dir=$ANDROID_HOME" >> local.properties
         echo "signingConfig.keyAlias=androiddebugkey" >> local.properties
         echo "signingConfig.keyPassword=android" >> local.properties
-        echo "signingConfig.storeFilePath=app/debug.keystore" >> local.properties
+        echo "signingConfig.storeFilePath=debug.keystore" >> local.properties
         echo "signingConfig.storePassword=android" >> local.properties
 
     - name: Grant execute permission for gradlew
