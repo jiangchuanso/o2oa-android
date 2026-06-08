@@ -26,6 +26,10 @@ jobs:
         rm -f app/debug.keystore
         keytool -genkeypair -v -storetype PKCS12 -keystore app/debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
 
+    - name: Download Gradle Wrapper
+      run: |
+        curl -sLo gradle/wrapper/gradle-wrapper.jar "https://raw.githubusercontent.com/gradle/gradle/v6.5/gradle/wrapper/gradle-wrapper.jar"
+
     - name: Create local.properties
       run: |
         echo "signingConfig.keyAlias=androiddebugkey" >> local.properties
