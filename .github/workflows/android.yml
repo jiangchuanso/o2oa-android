@@ -30,8 +30,15 @@ jobs:
       run: |
         curl -sLo gradle/wrapper/gradle-wrapper.jar "https://raw.githubusercontent.com/gradle/gradle/v6.5.0/gradle/wrapper/gradle-wrapper.jar"
 
+    - name: Setup Android SDK
+      run: |
+        echo "y" | sudo $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME --install "platforms;android-31" "build-tools;30.0.3" || \
+        echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager --install "platforms;android-31" "build-tools;30.0.3" || true
+        rm -rf $ANDROID_HOME/.repo || true
+
     - name: Create local.properties
       run: |
+        echo "sdk.dir=$ANDROID_HOME" >> local.properties
         echo "signingConfig.keyAlias=androiddebugkey" >> local.properties
         echo "signingConfig.keyPassword=android" >> local.properties
         echo "signingConfig.storeFilePath=app/debug.keystore" >> local.properties
