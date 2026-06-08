@@ -23,6 +23,7 @@ jobs:
     - name: Create debug keystore
       run: |
         mkdir -p app
+        rm -f app/debug.keystore
         keytool -genkeypair -v -storetype PKCS12 -keystore app/debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
 
     - name: Create local.properties
